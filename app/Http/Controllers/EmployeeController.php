@@ -95,9 +95,9 @@ class EmployeeController extends Controller
         // ELOQUENT
         $positions = Position::all();
         $employee = Employee::find($id);
-    
+
         return view('employee.edit', compact('pageTitle', 'positions', 'employee'));
-    
+
     }
 
     /**
@@ -110,18 +110,18 @@ class EmployeeController extends Controller
             'email' => 'Isi :attribute dengan format yang benar',
             'numeric' => 'Isi :attribute dengan angka'
         ];
-    
+
         $validator = Validator::make($request->all(), [
             'firstName' => 'required',
             'lastName' => 'required',
             'email' => 'required|email',
             'age' => 'required|numeric',
         ], $messages);
-    
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-    
+
         // ELOQUENT
         $employee = Employee::find($id);
         $employee->firstname = $request->firstName;
@@ -130,16 +130,26 @@ class EmployeeController extends Controller
         $employee->age = $request->age;
         $employee->position_id = $request->position;
         $employee->save();
-    
+
         return redirect()->route('employees.index');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+
+        // ELOQUENT
+        $employee = Employee::find($id);
+        $employee->firstname = $request->firstName;
+        $employee->lastname = $request->lastName;
+        $employee->email = $request->email;
+        $employee->age = $request->age;
+        $employee->position_id = $request->position;
+        $employee->save();
+
+        return redirect()->route('employees.index');
     }
 }
