@@ -12,7 +12,7 @@
                     <h5>{{ $employee->firstname }}</h5>
                 </div>
                 <div class="col-md-12 mb-3">
-                    <label for="lastName" class="form-label">Last Name</label>
+                    <label for="lastName" class="form-label">Last Namee</label>
                     <h5>{{ $employee->lastname }}</h5>
                 </div>
                 <div class="col-md-12 mb-3">
